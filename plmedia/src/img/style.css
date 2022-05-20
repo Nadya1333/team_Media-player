@@ -1,0 +1,18 @@
+.bodybg{
+    -fx-background-image: url('background2.jpg');
+    -fx-background-size: 100% 100%;
+}
+.songpicture{
+    -fx-background-radius: 20;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.search-background{
+    -fx-background-color:  #6e7fb7;
+    -fx-border-color: #c9cdd7;
+    -fx-border-radius: 10;
+}
+.playing-song-border{
+    -fx-background-color: #e4cfe6;
+}
