@@ -16,3 +16,45 @@
 .playing-song-border{
     -fx-background-color: #e4cfe6;
 }
+#songSlider .thumb {
+    -fx-background-color: #white;
+}
+#songSlider .track {
+    -fx-background-color: #e4cfe6;
+}
+#volumeSlider .thumb{
+    -fx-pref-height: 15px;
+    -fx-pref-width: 5px;
+    -fx-background-color: #e4cfe6;
+}
+#volumeSlider .track{
+    -fx-background-color: #6e7fb7;
+}
+#sSlider .thumb{
+    -fx-background-color: #white;
+}
+#sSlider .track {
+    -fx-background-color: #e4cfe6;
+}
+#vSlider .thumb{
+    -fx-pref-height: 15px;
+    -fx-pref-width: 5px;
+    -fx-background-color: #e4cfe6;
+}
+#vSlider .track{
+    -fx-background-color: #6e7fb7;
+}
+#scPane .thumb{
+    -fx-background-color: #6e7fb7;
+}
+
+#back{
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+#volPane{
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+
+

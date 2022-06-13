@@ -1,36 +1,36 @@
 package com.example.playermedia;
 
-//13 июня. Регулировка громкости. ДФ -- добавлена библиотека
-import javafx.beans.InvalidationListener;
+
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.beans.InvalidationListener;
 
 
-public class ControllerName {
+public class ControllerName implements Initializable{
     @FXML
-    private ResourceBundle resources;
+    private ResourceBundle resourcs;
 
     @FXML
     private Slider songSlider;
@@ -65,60 +65,12 @@ public class ControllerName {
     @FXML
     private ImageView shuffle;
 
-    public ControllerName() {
+
+    /*public ControllerName() {
         mediaPlay();
 
-    }
-
-    @FXML
-    void onButtonClickOpenList(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("list.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("List");
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch (Exception e) {
-            System.out.println("Can't load new window");
-
-        }
-    }
-
-    //13 июня. Повтор песни. ДФ -- вызов метода
-    //связан с изменением в fxml файле
-    @FXML
-    void restart(MouseEvent event){
-        restart();
-    }
-    
-    @FXML
-    void play(MouseEvent event){
-        play();
-
-    }
-
-    @FXML
-    void pause(MouseEvent event){
-        pause();
-
-    }
-
-    //13 июня. Регулировка громкости. ДФ -- вызов метода
-    //связан с изменением в fxml файле
-    @FXML
-    void volume(MouseEvent event){
-        volume();
-    }
-    
-    @FXML
-    void initialize() {
-        menu.setOnMouseClicked(MouseEvent -> {
-                    onButtonClickOpenList(MouseEvent);
-                }
-        );
-    }
-    @FXML
+    }*/
+   /* @FXML
     private void mediaPlay(){
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("select mp3", "*.mp3");
@@ -143,14 +95,104 @@ public class ControllerName {
 
 
 
-    }
-
+    }*/
+    @FXML
     private boolean isPlaying;
     private Timer timer;
     private TimerTask task;
+    private Media med;
+    private MediaPlayer mediaPlayer;
+    @FXML private Label songLabel;
     private File directory;
     private File[] files;
-    private MediaPlayer mediaPlayer;
+    private ArrayList<File> songs;
+    private int songNumber;
+
+
+
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1){
+
+        songs = new ArrayList<File>();
+        directory = new File("music");
+        files = directory.listFiles();
+        if(files !=null){
+            for (File file: files){
+                songs.add(file);
+            }
+        }
+        med = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayer = new MediaPlayer(med);
+        songLabel.setText(songs.get(songNumber).getName());
+
+        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
+                songSlider.setValue(newValue.toSeconds());
+            }
+        });
+        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                    mediaPlayer.setVolume(volumeSlider.getValue()*0.01);
+            }
+        });
+    }
+
+    @FXML
+    void onButtonClickOpenList(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("list.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("List");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Can't load new window");
+
+        }
+    }
+
+   @FXML
+    void initialize() {
+        menu.setOnMouseClicked(MouseEvent -> {
+                    onButtonClickOpenList(MouseEvent);
+                }
+        );
+    }
+
+    @FXML
+    void play(MouseEvent event){
+        beginTimer();
+        play();
+    }
+    @FXML
+    void pause(MouseEvent event){
+        cancelTimer();
+        pause();
+    }
+
+    @FXML
+    void volume(MouseEvent event){
+        volume();
+    }
+
+    @FXML
+    void restart(MouseEvent event){
+        restart();
+    }
+
+    @FXML
+    void nextMedia(MouseEvent event) {
+        nextMedia();
+    }
+
+    @FXML
+    void previousMedia(MouseEvent event){
+        previousMedia();
+    }
 
 
     private void play() {
@@ -166,8 +208,7 @@ public class ControllerName {
         cancelTimer();
         isPlaying = false;
     }
-
-    //13 июня. Регулировка громкости. ДФ -- метод
+    @FXML
     private void volume() {
         volumeSlider.setValue(mediaPlayer.getVolume() * 100);
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
@@ -178,21 +219,99 @@ public class ControllerName {
         });
     }
 
-    //13 июня. Повтор песни. ДФ -- метод
+    @FXML
     private void restart() {
         mediaPlayer.seek(Duration.millis(0));
         mediaPlayer.pause();
         mediaPlayer.play();
     }
-    
+    @FXML
+    private void nextMedia(){
+        if (songNumber < songs.size()-1){
+            songNumber++;
+            mediaPlayer.stop();
+
+            med = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(med);
+
+            songLabel.setText(songs.get(songNumber).getName());
+
+            play();
+            mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
+                    songSlider.setValue(newValue.toSeconds());
+                }
+            });
+
+        }
+        else{
+            songNumber = 0;
+            mediaPlayer.stop();
+
+            med = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(med);
+
+            songLabel.setText(songs.get(songNumber).getName());
+
+            play();
+            mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
+                    songSlider.setValue(newValue.toSeconds());
+                }
+            });
+        }
+    }
+
+    @FXML
+    private void previousMedia(){
+        if (songNumber >0 ){
+            songNumber--;
+            mediaPlayer.stop();
+
+            med = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(med);
+
+            songLabel.setText(songs.get(songNumber).getName());
+
+            play();
+            mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
+                    songSlider.setValue(newValue.toSeconds());
+                }
+            });
+        }
+        else{
+            songNumber = songs.size() - 1;
+            mediaPlayer.stop();
+
+            med = new Media(songs.get(songNumber).toURI().toString());
+            mediaPlayer = new MediaPlayer(med);
+
+            songLabel.setText(songs.get(songNumber).getName());
+
+            play();
+            mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
+                    songSlider.setValue(newValue.toSeconds());
+                }
+            });
+        }
+    }
+
+
     public void beginTimer() {
         timer = new Timer();
         task = new TimerTask() {
             public void run() {
                 isPlaying = true;
                 double current = mediaPlayer.getCurrentTime().toSeconds();
-                double end = mediaPlayer.getTotalDuration().toSeconds();
+                double end = med.getDuration().toSeconds();
                 songSlider.setValue(current / end);
+
                 if (current / end == 1) {
                     cancelTimer();
                 }
@@ -204,5 +323,5 @@ public class ControllerName {
         timer.cancel();
     }
 
-
 }
+

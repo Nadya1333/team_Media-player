@@ -1,6 +1,8 @@
 package com.example.playermedia;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,13 +20,9 @@ import javafx.scene.control.TableColumn;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.WindowEvent;
 
 public class HelloApplication extends Application {
-
-        public static void main(String[] args) {
-
-            Application.launch(args);
-        }
 
         @Override
         public void start(Stage stage) throws Exception {
@@ -34,7 +32,18 @@ public class HelloApplication extends Application {
             stage.setScene(scene);
             stage.show();
 
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent windowEvent) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            });
         }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 }
 

@@ -114,7 +114,7 @@
                                 <Font name="Lucida Console" size="15.0" />
                             </font>
                         </Text>
-                        <Slider layoutX="20.0" layoutY="30.0" showTickMarks="true" value="30.0" />
+                        <Slider fx:id="vSlider" layoutX="20.0" layoutY="30.0" showTickMarks="true" value="30.0" />
                     </children>
                 </Pane>
                 <ScrollPane layoutX="17.0" layoutY="84.0" prefHeight="273.0" prefWidth="606.0">
@@ -132,33 +132,33 @@
                 </ScrollPane>
                 <Pane layoutX="197.0" layoutY="364.0" prefHeight="62.0" prefWidth="429.0" style="-fx-background-color: #6e7fb7;" stylesheets="@../../../../../src/img/style.css">
                     <children>
-                        <Slider layoutX="31.0" layoutY="11.0" prefHeight="15.0" prefWidth="373.0" value="50.0" />
-                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="105.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                        <Slider fx:id="songSlider" layoutX="31.0" layoutY="11.0" prefHeight="15.0" prefWidth="373.0" value="50.0" />
+                        <ImageView  fx:id="shuffle" fitHeight="25.0" fitWidth="36.0" layoutX="105.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../src/img/shuffle.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="164.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="prev" fitHeight="25.0" fitWidth="36.0" layoutX="164.0" layoutY="31.0" onMouseClicked="#previousMedia" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../src/img/prev.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="190.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="190.0" layoutY="31.0"  onMouseClicked="#play" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../src/img/play.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="220.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView  fx:id="pause" fitHeight="25.0" fitWidth="36.0" layoutX="220.0" layoutY="31.0" onMouseClicked="#pause"  pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../src/img/pause.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="245.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView  fx:id="next" fitHeight="25.0" fitWidth="36.0" layoutX="245.0" layoutY="31.0" onMouseClicked="#nextMedia"  pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../src/img/next.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="23.0" fitWidth="20.0" layoutX="297.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="repeat" fitHeight="23.0" fitWidth="20.0" layoutX="297.0" layoutY="34.0" onMouseClicked="#restart" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../../../../src/img/repeat.png" />
                             </image>
