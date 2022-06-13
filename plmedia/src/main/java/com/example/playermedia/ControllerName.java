@@ -83,6 +83,13 @@ public class ControllerName {
         }
     }
 
+    //13 июня. Повтор песни. ДФ -- вызов метода
+    //связан с изменением в fxml файле
+    @FXML
+    void restart(MouseEvent event){
+        restart();
+    }
+    
     @FXML
     void play(MouseEvent event){
         play();
@@ -95,6 +102,13 @@ public class ControllerName {
 
     }
 
+    //13 июня. Регулировка громкости. ДФ -- вызов метода
+    //связан с изменением в fxml файле
+    @FXML
+    void volume(MouseEvent event){
+        volume();
+    }
+    
     @FXML
     void initialize() {
         menu.setOnMouseClicked(MouseEvent -> {
@@ -151,6 +165,24 @@ public class ControllerName {
         isPlaying = false;
     }
 
+    //13 июня. Регулировка громкости. ДФ -- метод
+    private void volume() {
+        volumeSlider.setValue(mediaPlayer.getVolume() * 100);
+        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                mediaPlayer.setVolume(volumeSlider.getValue() / 100);
+            }
+        });
+    }
+
+    //13 июня. Повтор песни. ДФ -- метод
+    private void restart() {
+        mediaPlayer.seek(Duration.millis(0));
+        mediaPlayer.pause();
+        mediaPlayer.play();
+    }
+    
     public void beginTimer() {
         timer = new Timer();
         task = new TimerTask() {
