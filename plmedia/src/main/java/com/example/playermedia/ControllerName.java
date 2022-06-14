@@ -39,7 +39,7 @@ import javafx.beans.InvalidationListener;
 
 
 
-
+/*объявление используемых переменных*/
 public class ControllerName implements Initializable{
     @FXML
     private ResourceBundle resourcs;
@@ -130,7 +130,7 @@ public class ControllerName implements Initializable{
 
 
 
-
+/*объявление главного метода плеера*/
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
 
@@ -185,61 +185,61 @@ public class ControllerName implements Initializable{
         );
     }*/
 
-    @FXML
+    @FXML /*вызов метода play*/
     void play(MouseEvent event){
         beginTimer();
         play();
     }
-    @FXML
+    @FXML/*вызов метода pause*/
     void pause(MouseEvent event){
         cancelTimer();
         pause();
     }
 
-    @FXML
+    @FXML /*вызов маетда громкости*/
     void volume(MouseEvent event){
         volume();
     }
 
-    @FXML
+    @FXML /*вызов метода повтора трека*/
     void restart(MouseEvent event){
         restart();
     }
 
-    @FXML
+    @FXML /*вызов метода следующего трека*/
     void nextMedia(MouseEvent event) {
         nextMedia();
     }
 
-    @FXML
+    @FXML /*вызов метода предыдущего трека*/
     void previousMedia(MouseEvent event){
         previousMedia();
     }
 
-    @FXML
+    @FXML /*вызов мотеда shuffle*/
     void shuffleMedia(MouseEvent event) {shuffleMedia();}
 
-    @FXML
+    @FXML /*вызов метода добавления треков*/
     void addSongs(MouseEvent event) throws IOException {
         addSongs();
     }
 
 
-
+/*инициализация метода play*/
     private void play() {
         System.out.println("Воспроизведение");
         beginTimer();
         mediaPlayer.play();
         isPlaying = true;
     }
-
+/*инициализация метода pause*/
     private void pause() {
         System.out.println("Пауза");
         mediaPlayer.pause();
         cancelTimer();
         isPlaying = false;
     }
-    @FXML
+    @FXML /*иницциализация метода громкости*/
     private void volume() {
         volumeSlider.setValue(mediaPlayer.getVolume() * 100);
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
@@ -250,13 +250,13 @@ public class ControllerName implements Initializable{
         });
     }
 
-    @FXML
+    @FXML /*инициализация метода повтора*/
     private void restart() {
         mediaPlayer.seek(Duration.millis(0));
         mediaPlayer.pause();
         mediaPlayer.play();
     }
-    @FXML
+    @FXML /*инициализация метода следующего трека*/
     private void nextMedia(){
         if (songNumber < songs.size()-1){
             songNumber++;
@@ -298,7 +298,7 @@ public class ControllerName implements Initializable{
             });
         }
     }
-
+/*инициализация метода предыдущего трека*/
     @FXML
     private void previousMedia(){
         if (songNumber >0 ){
@@ -340,7 +340,7 @@ public class ControllerName implements Initializable{
             });
         }
     }
-
+/*инициализация метода заполнения списка треков*/
     private void playlistView(){
         String[] playlist  = new String[songs.size()];
         for (int u = 0; u < songs.size();u++) {
@@ -372,7 +372,7 @@ public class ControllerName implements Initializable{
 
     }
 
-
+/*инициализация метода shuffle*/
     private void shuffleMedia(){
         Random rand = new Random();
         for (int i = 0; i < songs.size(); i++) {
@@ -398,7 +398,7 @@ public class ControllerName implements Initializable{
         }
 
     }
-
+/*инициализация метода добавления треков*/
     private void addSongs() throws IOException {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("select mp3", "*.mp3");
@@ -416,7 +416,7 @@ public class ControllerName implements Initializable{
 
     }
 
-
+/*инициализация метода ползунка трека по таймингу*/
     public void beginTimer() {
         timer = new Timer();
         task = new TimerTask() {
