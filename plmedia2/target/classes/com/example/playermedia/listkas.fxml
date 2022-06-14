@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="465.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="428.0" prefWidth="640.0" style="-fx-background-color: #d98eaf;" styleClass="bodybg" stylesheets="@../../../../../img/style.css" VBox.vgrow="ALWAYS">
+            <children>
+                <Pane layoutY="-1.0" prefHeight="31.0" prefWidth="640.0" style="-fx-background-color: #3954a3;">
+                    <children>
+                        <Text fill="#fefbea" layoutX="352.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CASSETTE" textAlignment="RIGHT" wrappingWidth="283.9830722808838">
+                            <font>
+                                <Font name="Wide Latin" size="25.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </Pane>
+                <Pane layoutX="18.0" layoutY="41.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color: #6e7fb7;">
+                    <children>
+                        <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="524.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/heart.png" />
+                     </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" layoutX="567.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/plus.png" />
+                     </image>
+                        </ImageView>
+                        <Line endX="16.0" endY="-12.0" layoutX="544.0" layoutY="23.0" startX="16.0" startY="7.0" stroke="#bfbfbf" />
+                        <HBox layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="193.0" styleClass="search-background" stylesheets="@../src/css/style.css">
+                            <children>
+                                <TextField prefHeight="16.0" prefWidth="215.0" promptText="search" styleClass="transparent" stylesheets="@../../../../../img/style.css">
+                                    <font>
+                                        <Font name="Lucida Console" size="11.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="5.0" />
+                                    </HBox.margin>
+                                </TextField>
+                                <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="69.0" top="2.5" />
+                                    </HBox.margin>
+                           <image>
+                              <Image url="@../../../../../img/search.png" />
+                           </image>
+                                </ImageView>
+                            </children>
+                        </HBox>
+                    </children>
+                </Pane>
+                <Pane layoutX="19.0" layoutY="364.0" prefHeight="62.0" prefWidth="178.0" style="-fx-background-color: #fefbea;">
+                    <children>
+                        <Text fill="#363636" layoutX="-3.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="volume" textAlignment="CENTER" wrappingWidth="185.0">
+                            <font>
+                                <Font name="Lucida Console" size="15.0" />
+                            </font>
+                        </Text>
+                        <Slider layoutX="20.0" layoutY="30.0" showTickMarks="true" value="30.0" />
+                    </children>
+                </Pane>
+                <ScrollPane layoutX="17.0" layoutY="84.0" prefHeight="273.0" prefWidth="606.0">
+                    <content>
+                        <TableView prefHeight="281.0" prefWidth="607.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="C1" />
+                                <TableColumn prefWidth="75.0" text="C2" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+                <Pane layoutX="197.0" layoutY="364.0" prefHeight="62.0" prefWidth="429.0" style="-fx-background-color: #6e7fb7;" stylesheets="@../../../../../img/style.css">
+                    <children>
+                        <Slider layoutX="31.0" layoutY="11.0" prefHeight="15.0" prefWidth="373.0" value="50.0" />
+                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="105.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/shuffle.png" />
+                     </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="164.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/prev.png" />
+                     </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="190.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/play.png" />
+                     </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="220.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/pause.png" />
+                     </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="245.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/next.png" />
+                     </image>
+                        </ImageView>
+                        <ImageView fitHeight="23.0" fitWidth="20.0" layoutX="297.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/repeat.png" />
+                     </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
