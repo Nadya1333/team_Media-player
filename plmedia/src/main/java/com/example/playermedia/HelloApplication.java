@@ -23,7 +23,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.WindowEvent;
 
 public class HelloApplication extends Application {
-
+/*инициализация метода открытия окна с заданным интерфейсом,
+настройка закрытия окна*/
         @Override
         public void start(Stage stage) throws Exception {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view.fxml"));
