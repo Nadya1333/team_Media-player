@@ -99,7 +99,7 @@
                         <Slider fx:id="songSlider" layoutX="43.0" layoutY="290.0" prefHeight="24.0" prefWidth="277.0" value="50.0" />
                         <ImageView fx:id="shuffle" fitHeight="31.0" fitWidth="35.0" layoutX="43.0" layoutY="328.0" onMouseClicked="#shuffleMedia" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../img/shuffle.png" />
+                                <Image url="@../../../../../src/img/shuffle.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="prev" fitHeight="31.0" fitWidth="31.0" layoutX="110.0" layoutY="328.0" onMouseClicked="#previousMedia" pickOnBounds="true" preserveRatio="true">
@@ -155,9 +155,9 @@
                                 <Font name="Lucida Console" size="16.0" />
                             </font>
                         </Text>
-                        <ImageView fx:id="menu" fitHeight="25.0" fitWidth="24.0" layoutX="178.0" layoutY="7.0" onMouseClicked="#onButtonClickOpenList" pickOnBounds="true" preserveRatio="true">
+                       <ImageView fx:id="addSongs" fitHeight="25.0" fitWidth="24.0" layoutX="178.0" layoutY="7.0" onMouseClicked="#addSongs" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../src/img/menu.png" />
+                                <Image url="@../../../../../src/img/plus.png" />
                             </image>
                         </ImageView>
                     </children>
